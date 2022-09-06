@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qzab6/T7MePiye3ZcjrYLq2BMiH6P7rUNeho2wcaCguIOUXa92HutuHOXuBjX8BXGuDxvx/LzXNvKbXPWCCYFw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Breno da Silva\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
+  ],
+  "logs": []
+}
