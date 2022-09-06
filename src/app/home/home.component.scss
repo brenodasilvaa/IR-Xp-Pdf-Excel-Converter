@@ -1,0 +1,71 @@
+.div { 
+    margin-top: 30px; 
+    font-family: Roboto, “Helvetica Neue”, sans-serif; 
+    display:flex;
+    flex-direction: column;
+}
+
+.btn-custom{
+  background-color: rgb(63, 81, 114);
+  color: rgb(255, 255, 255);
+}
+
+.btn-custom:hover{
+  background-color: rgb(54, 69, 97);
+  border-color: rgb(57, 119, 181) !important;
+}
+
+.fileName{
+  font-family: Roboto, “Helvetica Neue”, sans-serif;
+  color: white;
+  font-size: medium;
+}
+
+.divMaior{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px; 
+    height:400px !important; 
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    background-color: rgb(57, 119, 181);
+}
+
+.pdf-image{
+  width: 30%;
+}
+
+.uploadfilecontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 80%;
+    border: 2px dashed #bebaba;
+    border-radius: 10px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.uploadfilecontainer:hover{
+    cursor: pointer;
+    background-color: rgb(46, 94, 143) !important;
+}
+
+.button-upload{
+    width: 300px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn{
+    width: 300px;
+}
+
+.spinner{
+  margin-right: 30px;
+}

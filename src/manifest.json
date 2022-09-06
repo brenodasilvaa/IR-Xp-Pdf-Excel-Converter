@@ -1,0 +1,13 @@
+{    
+    "name": "pdf-excel-converter",
+    "version": "2.0",
+    "description": "Transform pdf IRRF into csv file",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_icon": {
+            "19": "assets/transform.png",
+            "38": "assets/transform.png"
+        },
+        "default_popup": "index.html"
+    }
+}
