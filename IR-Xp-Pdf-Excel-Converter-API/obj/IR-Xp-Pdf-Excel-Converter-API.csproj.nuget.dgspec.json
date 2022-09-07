@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj": {}
+    "D:\\WORK\\IR-XP-PDF-Excel-Converter\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj": {
+    "D:\\WORK\\IR-XP-PDF-Excel-Converter\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj",
+        "projectUniqueName": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj",
         "projectName": "IR-Xp-Pdf-Excel-Converter-API",
-        "projectPath": "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj",
-        "packagesPath": "C:\\Users\\Breno da Silva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Breno da Silva\\Projetos\\IR-Xp-Pdf-Excel-Converter\\Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API\\obj\\",
+        "projectPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\IR-Xp-Pdf-Excel-Converter-API\\IR-Xp-Pdf-Excel-Converter-API.csproj",
+        "packagesPath": "C:\\Users\\breno\\.nuget\\packages\\",
+        "outputPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\IR-Xp-Pdf-Excel-Converter-API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Breno da Silva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\breno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,8 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/norus/_packaging/Norus.SDK/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -47,6 +43,10 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.11.1, )"
+            },
+            "PdfSharpCore": {
+              "target": "Package",
+              "version": "[1.3.38, )"
             }
           },
           "imports": [
@@ -55,10 +55,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.28, 3.1.28]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -67,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

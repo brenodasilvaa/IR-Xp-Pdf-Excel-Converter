@@ -1,3 +1,4 @@
+using IR_Xp_Pdf_Excel_Converter_API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,8 @@ namespace IR_Xp_Pdf_Excel_Converter_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IConverterService, ConverterService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
