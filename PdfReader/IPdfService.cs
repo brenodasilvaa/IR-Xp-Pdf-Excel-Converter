@@ -1,7 +1,12 @@
-﻿namespace PdfReader.Services
+﻿using PdfReader.Models;
+using System.IO;
+
+namespace PdfReader.Services
 {
     public interface IPdfService
     {
-        string GetPdfDocument(string pdfFilePath);
+        PdfTextReturn GetPdfDocument(string pdfFilePath);
+        PdfTextReturn GetPdfDocument(Stream pdfFileStream);
+        EarningsReturn GetEarnings(PdfTextReturn pdfTextReturn);
     }
 }

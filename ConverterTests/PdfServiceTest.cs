@@ -28,8 +28,9 @@ namespace ConverterTests
             var pdf = new PdfService();
             var pdfStream = File.OpenRead(_fixture.PdfFilePath);
             //Act
-            pdf.GetPdfDocument(pdfStream);
+            var pdfReturn = pdf.GetPdfDocument(pdfStream);
             //Assert
+            Assert.True(pdfReturn.NumberOfPages > 0);
         }
     }
 }
