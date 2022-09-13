@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\PdfReader.csproj": {
-                "projectPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\PdfReader.csproj"
+              "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\FilesLibrary.csproj": {
+                "projectPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\FilesLibrary.csproj"
               }
             }
           }
@@ -72,12 +72,12 @@
         }
       }
     },
-    "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\PdfReader.csproj": {
+    "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\FilesLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\PdfReader.csproj",
-        "projectName": "PdfReader",
-        "projectPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\PdfReader.csproj",
+        "projectUniqueName": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\FilesLibrary.csproj",
+        "projectName": "FilesLibrary",
+        "projectPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\FilesLibrary.csproj",
         "packagesPath": "C:\\Users\\breno\\.nuget\\packages\\",
         "outputPath": "D:\\WORK\\IR-XP-PDF-Excel-Converter\\PdfReader\\obj\\",
         "projectStyle": "PackageReference",
@@ -113,6 +113,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.6, )"
             },
             "itext7": {
               "target": "Package",

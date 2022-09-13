@@ -1,7 +1,7 @@
-﻿using PdfReader.Models;
+﻿using FilesLibrary.Models;
 using System.IO;
 
-namespace PdfReader.Services
+namespace FilesLibrary.Interfaces
 {
     public interface IPdfService
     {

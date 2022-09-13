@@ -2,12 +2,12 @@
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iText.Kernel.Pdf.Canvas.Parser;
 using System.IO;
-using System.Collections.Generic;
 using System;
-using PdfReader.Models;
+using FilesLibrary.Models;
 using System.Linq;
+using FilesLibrary.Interfaces;
 
-namespace PdfReader.Services
+namespace FilesLibrary.Services
 {
     public class PdfService : IPdfService
     {
@@ -33,13 +33,16 @@ namespace PdfReader.Services
 
             result.EarningsHeader.Title = pdfTextReturn.PageText[0];
 
+            result.EarningsHeader.Caption = pdfTextReturn.PageText[1];
+
             short.TryParse(new String(pdfTextReturn.PageText[2].Where(x => char.IsDigit(x)).ToArray()), out short year);
             result.EarningsHeader.Year = year;
 
+            result.EarningsHeader.CompanyName = pdfTextReturn.PageText[4].Split(' ')[0];
             result.EarningsHeader.CNPJ = pdfTextReturn.PageText[4].Split(' ')[1];
 
+            result.EarningsHeader.ClienteName = pdfTextReturn.PageText[6].Split(' ')[0];
             result.EarningsHeader.CPF = pdfTextReturn.PageText[6].Split(' ')[1];
-
 
             result.EarningsHeader.BankBranch = GetBankInformation(pdfTextReturn.PageText[7].Split(' ')[0]);
 
@@ -54,19 +57,42 @@ namespace PdfReader.Services
 
                 string[] earningLineSplit = pdfTextReturn.PageText[i].Split(' ');
 
+                if (earningLineSplit.Length != 7)
+                    continue;
+
                 earning.Company = earningLineSplit[0];
                 earning.Event = (Common.EventType)Enum.Parse(typeof(Common.EventType), earningLineSplit[1]);
 
+                if(int.TryParse(earningLineSplit[2].Trim(), out int quantity))
+                    earning.Quantity = quantity;
+                else
+                    earning.Quantity = null;
+
+                decimal.TryParse(earningLineSplit[3].Trim(), out decimal amount);
+                earning.GrossValue = amount;
+
+                decimal.TryParse(earningLineSplit[4].Trim(), out decimal taxValue);
+                earning.TaxValue = taxValue;
+
+                decimal.TryParse(earningLineSplit[5].Trim(), out decimal netValue);
+                earning.NetValue = netValue;
+
+                if (DateTime.TryParse(earningLineSplit[6], out DateTime payDay))
+                    earning.PayDay = payDay;
+                else
+                    earning.PayDay = null;
+
+                result.Earnings.Add(earning);
             }
 
             return result;
+        }
 
-            int GetBankInformation(string bankInformation)
-            {
-                int.TryParse(bankInformation.Split(':')[1], out int resultBanckInformation);
+        private int GetBankInformation(string bankInformation)
+        {
+            int.TryParse(bankInformation.Split(':')[1], out int resultBanckInformation);
 
-                return resultBanckInformation;
-            }
+            return resultBanckInformation;
         }
 
         private PdfTextReturn GetPdfResult(PdfDocument pdfDocument)

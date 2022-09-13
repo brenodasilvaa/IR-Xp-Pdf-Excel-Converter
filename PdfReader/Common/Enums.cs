@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PdfReader.Common
+﻿
+namespace FilesLibrary.Common
 {
     public  enum EventType
     {

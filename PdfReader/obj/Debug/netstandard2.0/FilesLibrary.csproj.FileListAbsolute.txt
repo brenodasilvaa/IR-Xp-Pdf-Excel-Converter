@@ -1,0 +1,10 @@
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\bin\Debug\netstandard2.0\FilesLibrary.deps.json
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\bin\Debug\netstandard2.0\FilesLibrary.dll
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\bin\Debug\netstandard2.0\FilesLibrary.pdb
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.csproj.AssemblyReference.cache
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.AssemblyInfoInputs.cache
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.AssemblyInfo.cs
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.csproj.CoreCompileInputs.cache
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.dll
+D:\WORK\IR-XP-PDF-Excel-Converter\PdfReader\obj\Debug\netstandard2.0\FilesLibrary.pdb

@@ -1,8 +1,9 @@
 ﻿using IR_Xp_Pdf_Excel_Converter_API.Services;
 using Microsoft.AspNetCore.Mvc;
-using PdfReader.Services;
 using System.IO;
 using static System.Net.WebRequestMethods;
+using FilesLibrary.Interfaces;
+using FilesLibrary.Models;
 
 namespace IR_Xp_Pdf_Excel_Converter.Controllers
 {
@@ -11,23 +12,22 @@ namespace IR_Xp_Pdf_Excel_Converter.Controllers
     public class ConverterController : ControllerBase
     {
         public IPdfService _pdfService { get; set; }
+        public INpoiService _npoiService { get; set; }
 
-        public ConverterController(IPdfService pdfService)
+        public ConverterController(IPdfService pdfService, INpoiService npoiService)
         {
             _pdfService = pdfService;
+            _npoiService = npoiService;
         }
 
-        public struct MyStruct
-        {
-            public Stream file { get; set; }
-        }
         [HttpPost]
         public string Get()
         {
             foreach (var file in Request.Form.Files)
             {
-                var pdfDocument = _pdfService.GetPdfDocument(file.OpenReadStream());
-                var earnings = _pdfService.GetEarnings(pdfDocument);
+                PdfTextReturn pdfDocument = _pdfService.GetPdfDocument(file.OpenReadStream());
+                EarningsReturn earnings = _pdfService.GetEarnings(pdfDocument);
+                _npoiService.GenerateExcelFile(earnings);
             }
 
             return "";

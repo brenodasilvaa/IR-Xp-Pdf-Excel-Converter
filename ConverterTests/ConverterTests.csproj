@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IR-Xp-Pdf-Excel-Converter-API\IR-Xp-Pdf-Excel-Converter-API.csproj" />
-    <ProjectReference Include="..\PdfReader\PdfReader.csproj" />
+    <ProjectReference Include="..\PdfReader\FilesLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

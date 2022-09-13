@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IR-Xp-Pdf-Excel-Converter-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConverterTests", "..\ConverterTests\ConverterTests.csproj", "{FE351162-F8B8-478A-A258-2A216722D445}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfReader", "..\PdfReader\PdfReader.csproj", "{D0ED775A-1FD7-42B3-835F-FE957A6A1759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilesLibrary", "..\PdfReader\FilesLibrary.csproj", "{D0ED775A-1FD7-42B3-835F-FE957A6A1759}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

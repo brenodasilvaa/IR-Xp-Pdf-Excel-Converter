@@ -1,18 +1,12 @@
+using FilesLibrary.Interfaces;
+using FilesLibrary.Services;
 using IR_Xp_Pdf_Excel_Converter_API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using PdfReader.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IR_Xp_Pdf_Excel_Converter_API
 {
@@ -29,8 +23,9 @@ namespace IR_Xp_Pdf_Excel_Converter_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IPdfService, PdfService>();
-            services.AddSingleton<IConverterService, ConverterService>();
+            services.AddScoped<IPdfService, PdfService>();
+            services.AddScoped<INpoiService, NpoiService>();
+            services.AddScoped<IConverterService, ConverterService>();
 
             // If using Kestrel:
             services.Configure<KestrelServerOptions>(options =>
@@ -43,8 +38,6 @@ namespace IR_Xp_Pdf_Excel_Converter_API
             {
                 options.AllowSynchronousIO = true;
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

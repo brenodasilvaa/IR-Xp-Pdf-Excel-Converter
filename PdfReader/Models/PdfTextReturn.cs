@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PdfReader.Models
+namespace FilesLibrary.Models
 {
     public class PdfTextReturn
     {
