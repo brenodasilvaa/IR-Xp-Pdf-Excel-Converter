@@ -7,6 +7,6 @@ namespace FilesLibrary.Common
     public static class Constants
     {
         public static readonly string[] ColumnsNames = 
-            { "Ativo", "Evento", "Quantidade", "Valor bruto (R$)", "Valor IR (R$)", "Valor líquido (R$)", "Data pagamento" };
+            { "Quantidade", "Valor bruto (R$)", "Valor IR (R$)", "Valor líquido (R$)", "Data pagamento" };
     }
 }

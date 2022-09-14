@@ -60,7 +60,7 @@ namespace FilesLibrary.Services
                 if (earningLineSplit.Length != 7)
                     continue;
 
-                earning.Company = earningLineSplit[0];
+                earning.Asset = earningLineSplit[0];
                 earning.Event = (Common.EventType)Enum.Parse(typeof(Common.EventType), earningLineSplit[1]);
 
                 if(int.TryParse(earningLineSplit[2].Trim(), out int quantity))
