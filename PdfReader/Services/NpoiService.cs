@@ -3,17 +3,9 @@ using FilesLibrary.Models;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.Collections.Generic;
-using System.Data;
-using System;
 using FilesLibrary.Common;
 using System.IO;
 using System.Linq;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.Util;
-using NPOI.HSSF.Util;
-using System.Drawing.Imaging;
-using iText.Kernel.Colors;
-using static NPOI.HSSF.Util.HSSFColor;
 using FilesLibrary.Npoi;
 
 namespace FilesLibrary.Services
@@ -21,11 +13,14 @@ namespace FilesLibrary.Services
     public class NpoiService : INpoiService
     {
         public IWorkbook _workbook { get; private set; }
+        public Dictionary<string, ICellStyle> _cellStyles { get; private set; }
         public void GenerateExcelFile(EarningsReturn earningsReturn)
         {
             using (var fs = new FileStream("Result.xlsx", FileMode.Create, FileAccess.Write))
             {
                 _workbook = new XSSFWorkbook();
+
+                _cellStyles = StyleHelper.CreateStyles(_workbook);
 
                 ISheet excelSheet = _workbook.CreateSheet($"Proventos {earningsReturn.EarningsHeader.Year}");
 
@@ -37,30 +32,29 @@ namespace FilesLibrary.Services
 
                 _workbook.Write(fs);
             }
-            
         }
 
         private void CreateEarnings(ISheet excelSheet, ICollection<Earning> earnings)
         {
             var groupEarnings = earnings.GroupBy(x => new { x.Asset, x.Event });
 
-            int rowIndex = 12;
+            int rowIndex = 11;
 
             foreach (var earning in groupEarnings)
             {
+                if (earning.Key.Event == EventType.TOTAL)
+                    continue;
+
                 IRow row = excelSheet.CreateRow(rowIndex);
 
                 row.CreateCells(8);
 
-                var cra = new NPOI.SS.Util.CellRangeAddress(rowIndex, rowIndex, 0, 4);
-
-                excelSheet.AddMergedRegion(cra);
+                excelSheet.MergeCells(rowIndex, rowIndex, 0, 4);
 
                 var titleCell = row.GetCell(0);
 
                 titleCell.SetCellValue($"{earning.Key.Asset} - {earning.Key.Event}");
-
-                titleCell.SetCellColor(new Grey40Percent(), _workbook);
+                titleCell.CellStyle = _cellStyles["title"];
 
                 rowIndex++;
 
@@ -72,21 +66,71 @@ namespace FilesLibrary.Services
 
                 foreach (var item in earning)
                 {
-                    if (!item.Quantity.HasValue)
-                        continue;
-
-                    if (item.Event == EventType.TOTAL)
-                        continue;
-
                     IRow row_earning = excelSheet.CreateRow(rowIndex);
 
                     row_earning.CreateCells(6);
 
-                    row_earning.GetCell(0).SetCellValue(item.Quantity.Value);
+                    var quantityCell = row_earning.GetCell(0);
+                    quantityCell.SetCellValue(item.Quantity.Value);
+                    quantityCell.CellStyle = _cellStyles["earning"];
+
+                    var grossValueCell = row_earning.GetCell(1);
+                    grossValueCell.SetCellValue((double)item.GrossValue);
+                    grossValueCell.CellStyle = _cellStyles["earning"];
+
+                    var taxValueCell = row_earning.GetCell(2);
+                    taxValueCell.SetCellValue((double)item.TaxValue);
+                    taxValueCell.CellStyle = _cellStyles["earning"];
+
+                    var netValueCell = row_earning.GetCell(3);
+                    netValueCell.SetCellValue((double)item.NetValue);
+                    netValueCell.CellStyle = _cellStyles["earning"];
+
+                    var payDayValueCell = row_earning.GetCell(4);
+                    payDayValueCell.SetCellValue(item.PayDay.Value);
+                    payDayValueCell.CellStyle = _cellStyles["date"];
+
+                    rowIndex++;
                 }
+
+                rowIndex = CreateEmptyCells(excelSheet, rowIndex, 6, 2);
+
+                IRow row_total = excelSheet.GetRow(rowIndex);
+                ICell totalCell = row_total.GetCell(3);
+
+                totalCell.SetCellValue("Total (R$)");
+                totalCell.CellStyle = _cellStyles["title"];
+
+                ICell totalCellValue = row_total.GetCell(4);
+
+                var totalNetValue = earning.Sum(x => x.NetValue);
+
+                totalCellValue.SetCellValue((double)totalNetValue);
+                totalCellValue.CellStyle = _cellStyles["title"];
 
                 rowIndex += 2;
             }
+        }
+
+        private int CreateEmptyCells(ISheet excelSheet, int rowIndex, int cells, int rows)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                IRow row_empty = excelSheet.CreateRow(rowIndex);
+                row_empty.CreateCells(cells);
+
+                for (int j = 0; j < cells - 1; j++)
+                {
+                    row_empty.GetCell(j).CellStyle = _cellStyles["earning"];
+                }
+
+                if (i == (rows - 1))
+                    continue;
+
+                rowIndex++;
+            }
+
+            return rowIndex;
         }
 
         private void CreateHeader(ISheet excelSheet, EarningsHeader earningsHeader)
@@ -97,8 +141,7 @@ namespace FilesLibrary.Services
 
                 row.CreateCells(6);
 
-                var cra = new NPOI.SS.Util.CellRangeAddress(i, i, 0, 4);
-                excelSheet.AddMergedRegion(cra);
+                excelSheet.MergeCells(i, i, 0, 4);
             }
 
             IRow row_0 = excelSheet.GetRow(0);
@@ -128,6 +171,10 @@ namespace FilesLibrary.Services
             IRow row_8 = excelSheet.GetRow(8);
             row_8.GetCell(0).SetCellValue("Conta: " + earningsHeader.Account);
 
+            for (int i = 0; i <= 8; i++)
+            {
+                excelSheet.GetRow(i).GetCell(0).CellStyle = _cellStyles["information"];
+            }
         }
 
         private void CreateHeaderEarning(IRow row_header)
@@ -138,7 +185,7 @@ namespace FilesLibrary.Services
             {
                 ICell cell = row_header.CreateCell(columnIndex);
                 cell.SetCellValue(columnName);
-                cell.SetCellColor(new Grey25Percent(), _workbook);
+                cell.CellStyle = _cellStyles["earningHeader"];
                 columnIndex++;
             }
         }
