@@ -1,4 +1,4 @@
-# Proventos-Xp-Pdf-Excel-Converter
+# IR-Xp-Pdf-Excel-Converter
 
 This project creates a Chrome Extension SPA that allows the user to upload earning reports provided by XP Inc in PDF and convert it to a xlsx file. The request is made by POST to the API that converts the file to xlsx and saves it on the cloud and returns a link to download.
 
