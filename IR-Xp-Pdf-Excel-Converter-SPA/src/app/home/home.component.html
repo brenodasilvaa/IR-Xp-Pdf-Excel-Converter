@@ -3,7 +3,7 @@
     <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="onChange($event)">
       <img *ngIf="!completed" class="pdf-image" src="{{'../assets/ficheiro-pdf.png'}}">
       <img *ngIf="completed" class="pdf-image" src="{{'../assets/check.png'}}">
-      <input accept=".pdf" hidden #fileInput class="form-control" type="file" (change)="onChange($event)">
+      <input id="input-upload" accept=".pdf" hidden #fileInput class="form-control" type="file" (change)="onChange($event)">
       <label class="fileName" *ngIf="uploaded">{{file.name}}</label>
     </div>  
     <div class="button-upload">
@@ -11,6 +11,9 @@
       <button disabled *ngIf="!loading" (click)="onUpload()" class="btn btn-custom" id="btn-upload">
         Converter
       </button>
+    </div>
+    <div *ngIf="!success" class="error">
+      <label class="errorLabel">{{returnModel.message}}</label>
     </div>
   </div>
 </div>

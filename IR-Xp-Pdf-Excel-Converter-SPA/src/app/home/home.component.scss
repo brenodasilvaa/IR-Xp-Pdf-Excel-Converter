@@ -69,3 +69,44 @@
 .spinner{
   margin-right: 30px;
 }
+
+.error{
+  width: 300px;
+  height: auto;
+  max-height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  border-width: 2px;
+  margin-top: 15px;
+  background-color: rgb(172, 115, 115);
+  color: white;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.errorLabel{
+  word-wrap: break-word; 
+  width: 290px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(186, 91, 91);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(178, 68, 68);
+}

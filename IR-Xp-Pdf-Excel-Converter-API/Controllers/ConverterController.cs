@@ -1,9 +1,13 @@
-﻿using IR_Xp_Pdf_Excel_Converter_API.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using static System.Net.WebRequestMethods;
 using FilesLibrary.Interfaces;
 using FilesLibrary.Models;
+using System;
+using IR_Xp_Pdf_Excel_Converter_API.Models;
+using CloudManager.Interfaces;
+using System.Threading.Tasks;
+using CloudinaryDotNet.Actions;
+using System.Collections.Generic;
 
 namespace IR_Xp_Pdf_Excel_Converter.Controllers
 {
@@ -13,24 +17,40 @@ namespace IR_Xp_Pdf_Excel_Converter.Controllers
     {
         public IPdfService _pdfService { get; set; }
         public INpoiService _npoiService { get; set; }
+        public ICloudinaryService _cloudinaryService { get; set; }
 
-        public ConverterController(IPdfService pdfService, INpoiService npoiService)
+        public ConverterController(IPdfService pdfService, INpoiService npoiService, ICloudinaryService cloudinaryService)
         {
             _pdfService = pdfService;
             _npoiService = npoiService;
+            _cloudinaryService = cloudinaryService;
         }
 
         [HttpPost]
-        public string Get()
+        [RequestSizeLimit(100_000_000)]
+        public async Task<ActionResult> Get()
         {
-            foreach (var file in Request.Form.Files)
+            try
             {
-                PdfTextReturn pdfDocument = _pdfService.GetPdfDocument(file.OpenReadStream());
-                EarningsReturn earnings = _pdfService.GetEarnings(pdfDocument);
-                _npoiService.GenerateExcelFile(earnings);
-            }
+                var downloadLinks = new List<Uri>();
 
-            return "";
+                foreach (var file in Request.Form.Files)
+                {
+                    PdfTextReturn pdfDocument = _pdfService.GetPdfDocument(file.OpenReadStream());
+                    EarningsReturn earnings = _pdfService.GetEarnings(pdfDocument);
+                    MemoryStream excelFile = _npoiService.GenerateExcelFile(earnings);
+
+                    var uploadResult = await _cloudinaryService.Upload(excelFile);
+
+                    downloadLinks.Add(uploadResult.SecureUrl);
+                }
+
+                return Ok(new ReturnModel() { success = true, downloadLinks = downloadLinks });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ReturnModel() { success = false, message = ex.Message });
+            }
         }
     }
 }

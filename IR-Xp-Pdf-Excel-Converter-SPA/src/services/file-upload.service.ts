@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 export class FileUploadService {
     
   // API url
-  baseApiUrl = "https://file.io"
+  baseApiUrl = "https://localhost:5001/Converter"
     
   constructor(private http:HttpClient) { }
   

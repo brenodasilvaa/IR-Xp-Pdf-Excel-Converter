@@ -1,3 +1,5 @@
+using CloudManager.Interfaces;
+using CloudManager.Services;
 using FilesLibrary.Interfaces;
 using FilesLibrary.Services;
 using IR_Xp_Pdf_Excel_Converter_API.Services;
@@ -22,10 +24,13 @@ namespace IR_Xp_Pdf_Excel_Converter_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddControllers();
             services.AddScoped<IPdfService, PdfService>();
             services.AddScoped<INpoiService, NpoiService>();
             services.AddScoped<IConverterService, ConverterService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
 
             // If using Kestrel:
             services.Configure<KestrelServerOptions>(options =>
@@ -51,6 +56,14 @@ namespace IR_Xp_Pdf_Excel_Converter_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 

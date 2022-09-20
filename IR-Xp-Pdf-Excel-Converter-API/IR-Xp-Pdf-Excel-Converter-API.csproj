@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CloudManager\CloudManager.csproj" />
     <ProjectReference Include="..\PdfReader\FilesLibrary.csproj" />
   </ItemGroup>
 

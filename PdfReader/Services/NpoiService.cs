@@ -14,24 +14,29 @@ namespace FilesLibrary.Services
     {
         public IWorkbook _workbook { get; private set; }
         public Dictionary<string, ICellStyle> _cellStyles { get; private set; }
-        public void GenerateExcelFile(EarningsReturn earningsReturn)
+        public MemoryStream GenerateExcelFile(EarningsReturn earningsReturn)
         {
-            using (var fs = new FileStream("Result.xlsx", FileMode.Create, FileAccess.Write))
-            {
-                _workbook = new XSSFWorkbook();
+            var excelStream = new MemoryStream();
+            
+            _workbook = new XSSFWorkbook();
 
-                _cellStyles = StyleHelper.CreateStyles(_workbook);
+            _cellStyles = StyleHelper.CreateStyles(_workbook);
 
-                ISheet excelSheet = _workbook.CreateSheet($"Proventos {earningsReturn.EarningsHeader.Year}");
+            ISheet excelSheet = _workbook.CreateSheet($"Proventos {earningsReturn.EarningsHeader.Year}");
 
-                CreateHeader(excelSheet, earningsReturn.EarningsHeader);
+            CreateHeader(excelSheet, earningsReturn.EarningsHeader);
 
-                CreateEarnings(excelSheet, earningsReturn.Earnings);
+            CreateEarnings(excelSheet, earningsReturn.Earnings);
 
-                excelSheet.DefaultColumnWidth = 30;
+            excelSheet.DefaultColumnWidth = 30;
 
-                _workbook.Write(fs);
-            }
+            _workbook.Write(excelStream);
+
+            var excelArrayWorkAround = excelStream.ToArray();
+
+            var resultMs = new MemoryStream(excelArrayWorkAround);
+
+            return resultMs;
         }
 
         private void CreateEarnings(ISheet excelSheet, ICollection<Earning> earnings)
