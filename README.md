@@ -1,6 +1,6 @@
 # IR-Xp-Pdf-Excel-Converter
 
-This project creates a Chrome Extension SPA that allows the user to upload earning reports provided by XP Inc in PDF and convert it to a xlsx file. The request is made by POST to the API that converts the file to xlsx and saves it on the cloud and returns a link to download.
+This project creates a Chrome Extension SPA that allows the user to upload earning reports provided by XP Inc in PDF and convert it into a xlsx file. The request is made to the API that converts the file to xlsx and saves it on the cloud and returns a link to download.
 
 IR-XP-PdfExcel-Converter-SPA is a SPA built in Angular 14.2.0
 
